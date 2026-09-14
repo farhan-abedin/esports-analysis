@@ -26,11 +26,12 @@ while scrubbing through a timeline.
 Analyses player movement across the island.
 
 Positions are drawn over the map, and a region of interest is defined by
-drawing a polygon directly on the plot. A point-in-polygon test then resolves
-which players passed through that area and when, with a range slider to
-restrict the time window. Also pulls tournament leaderboards and converts
-session IDs into match IDs, so a whole event can be analysed rather than a
-hand-listed set of games.
+drawing a polygon directly on the plot. This polygon determines an area of
+storm locations that matches need to have in order to have their movement
+events plotted on the map. A time slider also exists to identify at what 
+relative time into the game players' movements should be tracked.
+Also pulls tournament leaderboards and convertssession IDs into match IDs, 
+so a whole event can be analysed rather than a hand-listed set of games.
 
 ### `healofftimer.py`
 
@@ -48,7 +49,8 @@ the phases of a game.
 ### `findbosses.py`
 
 Extracts NPC and boss movement paths and plots them over the island map, so
-patrol routes and spawn behaviour can be read at a glance.
+spawn locations and movements can be seen on the map (after conversion 
+from coordinates to map location).
 
 ## Data handling
 
