@@ -14,19 +14,6 @@ from typing import Dict, List, Optional
 from matplotlib.path import Path
 from matplotlib.widgets import PolygonSelector, RangeSlider, Button
 
-# ---------------------------------------------------------------------------
-# SCHEMA CONFIG
-# I don't have access to a real cached match from your matches/ folder, so I
-# can't confirm the exact field names Osirion uses to link a movementEvents
-# entry to a specific player, or the field with a player's display name in
-# the `players` include. These are best-guess field names, tried in order.
-# If the title after clicking a dot shows "Unknown player" or the wrong
-# match, open one cached matches/<id>.json and check:
-#   - what field on a movementEvents entry identifies the player
-#   - what field on a players[] entry holds their id, and what field holds
-#     their display name
-# then adjust the lists below to match.
-# ---------------------------------------------------------------------------
 PLAYER_ID_KEYS = ["accountId", "playerId", "epicId", "id"]
 PLAYER_NAME_KEYS = ["epicUsername", "name", "displayName", "epicName", "username"]
 
@@ -288,17 +275,6 @@ def displayPlot(data, playerNamesById):
 
     plt.show()
 
-
-# ---------------------------------------------------------------------------
-# EVENT ID / WINDOW ID -> MATCH ID RESOLUTION
-# Ported from zoneLuckScore5.py: pulls sessionHistory off the tournament
-# leaderboard for a given eventId/eventWindowId, then converts those session
-# IDs into Osirion match IDs via session-id-to-match-id.
-# Uses the API token zoneLuckScore5.py has confirmed working against the
-# leaderboard + session-id-to-match-id endpoints. This is separate from the
-# token Game.getRawData() uses to fetch a match's own event data above -
-# swap LEADERBOARD_API_TOKEN below if that stops working for you.
-# ---------------------------------------------------------------------------
 LEADERBOARD_API_TOKEN = os.environ["OSIRION_API_TOKEN"]
 LEADERBOARD_HEADERS = {
     "Authorization": f"Bearer {LEADERBOARD_API_TOKEN}",
